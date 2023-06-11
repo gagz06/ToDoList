@@ -1,0 +1,54 @@
+ul{
+    list-style-type:none;
+    text-align: left;
+}
+
+#taskName{
+    background-color: lightgrey;
+    
+}
+#listContainer{
+    text-align: center;
+    height: 50%;
+    width: 50%;
+    margin: auto;
+    border: 1px solid;
+    padding: 10px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+#container{
+    margin: 30px 30px 30px 30px;
+    height: 100%;
+    background-color: lightgrey;
+}
+
+#footerDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#topButtonDiv{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+#taskList input[type="checkbox"] {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    border: 2px solid #000;
+    outline: none;
+    cursor: pointer;
+  }
+  
+  #taskList input[type="checkbox"]:checked {
+    background-color: #000;
+  }
+  

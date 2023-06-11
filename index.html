@@ -3,9 +3,57 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>To Do List</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    
+    <div id="container">
+        <div id="listContainer">
+            <input type="text" id="taskName" name="taskName" placeholder="Type your to do list">
+            <br>
+           <div id="topButtonDiv">
+            <div id="lefttopButtonDiv">
+                <button id="completeAllTask">
+                    Complete all tasks
+                </button>
+            </div>
+            <div id="righttopButtonDiv">
+                <button id="clearCompleted">
+                    Clear Completed
+                </button>
+            </div>
+           </div>
+            <hr>
+            <ul id="taskList">
+                <li id="firstElement">
+                    <input type="checkbox" id="selectTask">
+                    <label id="task1"> Learn how to use Vue.js </label>
+                </li>
+                <li id="secondElement">
+                    <input type="checkbox" id="selectTask2">
+                    <label id="task2"> Drink Coffee </label>
+                </li>
+            </ul>
+            <hr>
+            <div id="footerDiv">
+            <div id="leftFooter">
+                <label id="numberOfTasks"> 2 </label>
+                <label> tasks left </label>
+            </div>
+            <div id="rightFooter">
+                <button id="showAllTasks">
+                    All
+                </button>
+                <button id="incompleteTask">
+                    Incomplete
+                </button>
+                <button id="completedTask">
+                    Completed
+                </button>
+            </div>
+            </div>
+        </div>
+    </div>
+    <script src="./script.js"></script>
 </body>
 </html>
