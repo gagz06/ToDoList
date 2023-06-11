@@ -5,14 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To Do List</title>
     <link rel="stylesheet" href="./style.css">
-    <script src="https://kit.fontawesome.com/d8d112cec0.js" crossorigin="anonymous"></script>
+    <!-- <script src="https://kit.fontawesome.com/d8d112cec0.js" crossorigin="anonymous"></script> -->
 </head>
 <body>
     <div id="container">
         <div id="listContainer">
             <div id="taskNameContainer">
                 <input type="text" id="taskName" name="taskName" placeholder="Type your to-do list">
-                
                 <button id="taskNameButton">&#43;</button>
               </div>              
             <br>
@@ -29,20 +28,17 @@
             </div>
            </div>
             <hr>
+            <strong>
+                <label id="listStatus"> All task List </label>
+            </strong>
+           <div id="itemsList">
             <ul id="taskList">
-                <li id="firstElement">
-                    <input type="checkbox" id="selectTask">
-                    <label id="task1"> Learn how to use Vue.js </label>
-                </li>
-                <li id="secondElement">
-                    <input type="checkbox" id="selectTask2">
-                    <label id="task2"> Drink Coffee </label>
-                </li>
             </ul>
+           </div>
             <hr>
             <div id="footerDiv">
             <div id="leftFooter">
-                <label id="numberOfTasks"> 2 </label>
+                <label id="numberOfTasks"> 0 </label>
                 <label> tasks left </label>
             </div>
             <div id="rightFooter">
