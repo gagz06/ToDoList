@@ -20,6 +20,12 @@ const incompleteButton = document.getElementById("incompleteTask");
 function addTask() {
   const taskName = taskNameInput.value;
   if (taskName.trim() !== "") {
+    const taskExists = Array.from(taskList.getElementsByTagName("label"))
+    .some(label => label.textContent === taskName);
+    if (taskExists) {
+      alert("Task already exists!");
+      return;
+    }
     const newTaskItem = document.createElement("li");
     const listItemDiv = document.createElement("div");
     listItemDiv.className = "listItem";
@@ -50,34 +56,20 @@ taskNameInput.addEventListener("keydown", function (event) {
 
 
 // Add click event listener to each delete button
+
 function deleteTask() {
   const listItem = this.parentElement.parentElement;
   listItem.remove();
   taskCount--;
   numberOfTasks.textContent = taskCount;
+  alert('Task deleted successfully');
 }
+// added event listener in task list
 taskList.addEventListener("click",(event)=>{
   if (event.target.classList.contains("deleteTaskButton")) {
     deleteTask.call(event.target);}
 });
 
-// Add click event listener to each delete button
-// deleteButtons.forEach((button) => {
-//   button.addEventListener("click", deleteTask);
-// });
-
-
-// deleteButtons.forEach((button) => {
-//   button.addEventListener("click", () => {
-//     // Find the parent <li> element and remove it
-//     const listItem = button.closest("li");
-//     if (listItem) {
-//       listItem.remove();
-//       taskCount--;
-//       numberOfTasks.textContent = taskCount;
-//     }
-//   });
-// });
 
 
 
@@ -142,6 +134,7 @@ completeAllButton.addEventListener("click", () => {
   checkboxes.forEach((checkbox) => {
     checkbox.checked = true;
   });
+  alert('All task set as completed');
 });
 
 // Add click event listener to the Clear all the Completed task from the list
@@ -160,4 +153,5 @@ clearCompletedButton.addEventListener("click", () => {
       numberOfTasks.textContent = taskCount;
     }
   });
+  alert('All completed task are deleted!!')
 });
