@@ -8,7 +8,7 @@ const clearCompletedButton = document.getElementById("clearCompleted");
 const showAllTask = document.getElementById("showAllTasks"); 
 const completedTask = document.getElementById("completedTask"); 
 const listStatus = document.getElementById("listStatus"); 
-
+const taskDateValue = document.getElementById('taskDate');
 // Get all delete buttons
 const deleteButtons = document.querySelectorAll(".deleteTaskButton"); 
 
@@ -23,6 +23,7 @@ document.getElementById('taskDate').valueAsDate = new Date();
 // Common function so that on click button and keyboard enter will add task in list
 function addTask() {
   const taskName = taskNameInput.value; 
+  const taskDate = taskDateValue.value;
   if (taskName.trim() !== "") { 
     // Check whether the same task exists
     const taskExists = Array.from(taskList.getElementsByTagName("label"))
@@ -38,6 +39,8 @@ function addTask() {
     checkbox.type = "checkbox"; 
     const label = document.createElement("label");
     label.textContent = taskName;
+    const dateLabel = document.createElement("label");
+    dateLabel.textContent=taskDate;
     const deleteButton = document.createElement("button"); 
     deleteButton.className = "deleteTaskButton"; 
     // Set the inner HTML of the delete button to a cross symbol
@@ -46,6 +49,7 @@ function addTask() {
     // Add elements to the task item div
     listItemDiv.appendChild(checkbox);
     listItemDiv.appendChild(label);
+    listItemDiv.appendChild(dateLabel);
     listItemDiv.appendChild(deleteButton);
 
     // Add the div to the task item
