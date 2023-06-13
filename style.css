@@ -14,10 +14,10 @@ button {
   border-radius: 20px;
   font-size: large;
 }
-#dateOfTask{
+.dateOfTask{
   background-color: lightgray;
-  margin-left: 10px;
-  border-radius: 20px;
+  margin-left: 20px;
+  border-radius: 10px;
 }
 #taskDate{
   height: 30px;
@@ -130,7 +130,8 @@ body {
 
 .deleteTaskButton {
   visibility: hidden;
-  padding: 5px 10px;
+  /* padding: 5px 10px; */
+  margin-left: 10px;
 }
 
 #taskList li:hover .deleteTaskButton {
@@ -139,7 +140,8 @@ body {
 
 #taskList label {
   /* flex: 1; */
-  padding-right: 10px;
+  padding-right: 20px;
+  padding-left: 20px;
 }
 
 #taskList input[type="checkbox"] {

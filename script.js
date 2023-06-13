@@ -30,7 +30,23 @@ function retrieveTaskList() {
     taskList.innerHTML = savedTaskList;
     taskCount = taskList.getElementsByTagName("li").length;
     numberOfTasks.textContent = taskCount;
+    toggleCheckbox();
   }
+}
+
+function toggleCheckbox(){
+  const listItems = document.querySelectorAll("#taskList li");
+  listItems.forEach((item)=>{
+    const checkboxValue = item.querySelector('#taskList input[type="checkbox"]');
+    const label = item.querySelector("label");
+    const computedStyle = getComputedStyle(label);
+    const textDecoration = computedStyle.getPropertyValue("text-decoration");
+    if (label && textDecoration.includes("line-through")) {
+     checkboxValue.checked=true;
+    } else {
+      checkboxValue.checked=false;
+    }
+  });
 }
 
 // Common function so that on click button and keyboard enter will add task in list
@@ -54,11 +70,13 @@ function addTask() {
     const listItemDiv = document.createElement("div");
     listItemDiv.className = "listItem";
     const checkbox = document.createElement("input");
+    checkbox.id="checkboxToggler";
     checkbox.type = "checkbox";
     const label = document.createElement("label");
     label.textContent = taskName;
     const dateLabel = document.createElement("label");
     dateLabel.textContent = taskDate;
+    dateLabel.className="dateOfTask";
     const deleteButton = document.createElement("button");
     deleteButton.className = "deleteTaskButton";
     // Set the inner HTML of the delete button to a cross symbol
@@ -84,6 +102,20 @@ function addTask() {
     return;
   }
 }
+
+
+// Event listener for checkbox toggle
+taskList.addEventListener("change", (event) => {
+  if (event.target.type === "checkbox") {
+    const listItem = event.target.closest("li");
+    const label = listItem.querySelector("label");
+    //const taskDate = listItem.querySelector(".taskDate");
+    label.style.textDecoration = event.target.checked ? "line-through" : "none";
+    //taskDate.style.textDecoration = event.target.checked ? "line-through" : "none";
+    saveTaskList();
+  }
+});
+
 
 // Event listener to handle the "Add Task" button click
 taskNameButton.addEventListener("click", addTask);
