@@ -2,6 +2,9 @@ ul {
   list-style-type: none;
   text-align: left;
 }
+label{
+  font-size: x-large;
+}
 
 button {
   border: none;
@@ -9,12 +12,15 @@ button {
   /* background-color: inherit; */
   cursor: pointer;
   border-radius: 20px;
+  font-size: large;
 }
 
 #taskName {
   background-color: lightgrey;
   width: inherit;
   padding-right: 70px;
+  height: 30px;
+  font-size: large;
 }
 
 #listContainer {
@@ -98,6 +104,7 @@ body {
 #taskList li {
   display: flex;
   align-items: center;
+  height: 50px;
 }
 
 .deleteTaskButton {
