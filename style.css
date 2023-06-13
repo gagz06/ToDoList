@@ -6,13 +6,15 @@ ul {
 button {
   border: none;
   outline: none;
-  background-color: inherit;
+  /* background-color: inherit; */
   cursor: pointer;
+  border-radius: 20px;
 }
 
 #taskName {
   background-color: lightgrey;
   width: inherit;
+  padding-right: 70px;
 }
 
 #listContainer {
@@ -60,7 +62,7 @@ body {
 }
 
 #taskList input[type="checkbox"]:checked {
-  background-color: #000;
+  background-color: black;
 }
 
 #taskNameContainer {
@@ -68,9 +70,7 @@ body {
   display: inline-block;
 }
 
-#taskName {
-  padding-right: 35px;
-}
+
 
 #taskNameButton {
   position: absolute;

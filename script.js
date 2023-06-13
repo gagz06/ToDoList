@@ -1,60 +1,66 @@
-const taskNameInput = document.getElementById("taskName");
-const taskNameButton = document.getElementById("taskNameButton");
-const taskList = document.getElementById("taskList");
-const numberOfTasks = document.getElementById("numberOfTasks");
-const completeAllButton = document.getElementById("completeAllTask");
-const clearCompletedButton = document.getElementById("clearCompleted");
-const showAllTask = document.getElementById("showAllTasks");
-const completedTask = document.getElementById("completedTask");
-const listStatus = document.getElementById("listStatus");
+
+const taskNameInput = document.getElementById("taskName"); 
+const taskNameButton = document.getElementById("taskNameButton"); 
+const taskList = document.getElementById("taskList"); 
+const numberOfTasks = document.getElementById("numberOfTasks"); 
+const completeAllButton = document.getElementById("completeAllTask"); 
+const clearCompletedButton = document.getElementById("clearCompleted"); 
+const showAllTask = document.getElementById("showAllTasks"); 
+const completedTask = document.getElementById("completedTask"); 
+const listStatus = document.getElementById("listStatus"); 
 
 // Get all delete buttons
-const deleteButtons = document.querySelectorAll(".deleteTaskButton");
+const deleteButtons = document.querySelectorAll(".deleteTaskButton"); 
 
 // Counter for tasks
-let taskCount = 0;
+let taskCount = 0; 
+
 // Get the Incomplete button
 const incompleteButton = document.getElementById("incompleteTask");
 
 // Common function so that on click button and keyboard enter will add task in list
 function addTask() {
-  const taskName = taskNameInput.value;
-  if (taskName.trim() !== "") {
-    //check whether the same task exist 
+  const taskName = taskNameInput.value; 
+  if (taskName.trim() !== "") { 
+    // Check whether the same task exists
     const taskExists = Array.from(taskList.getElementsByTagName("label"))
-    .some(label => label.textContent === taskName);
+      .some(label => label.textContent === taskName); 
     if (taskExists) {
-      alert("Task already exists!");
-      return;
+      alert("Task already exists!"); 
+      return; 
     }
-    const newTaskItem = document.createElement("li");
+    const newTaskItem = document.createElement("li"); 
     const listItemDiv = document.createElement("div");
-    listItemDiv.className = "listItem";
+    listItemDiv.className = "listItem"; 
     const checkbox = document.createElement("input");
-    checkbox.type = "checkbox";
+    checkbox.type = "checkbox"; 
     const label = document.createElement("label");
     label.textContent = taskName;
-    const deleteButton = document.createElement("button");
-    deleteButton.className = "deleteTaskButton";
-    deleteButton.innerHTML = "&#9587;";
-    //addidng elements in div from js
+    const deleteButton = document.createElement("button"); 
+    deleteButton.className = "deleteTaskButton"; 
+    // Set the inner HTML of the delete button to a cross symbol
+    // deleteButton.innerHTML = "&#9587;"; 
+    deleteButton.innerHTML = "&#9587;"; 
+    // Add elements to the task item div
     listItemDiv.appendChild(checkbox);
     listItemDiv.appendChild(label);
     listItemDiv.appendChild(deleteButton);
-    //adding div in list
+
+    // Add the div to the task item
     newTaskItem.appendChild(listItemDiv);
-    //adding the li item into unordered list
+
+    // Add the task item to the task list
     taskList.appendChild(newTaskItem);
-    // Clear the input field
-    taskNameInput.value = ""; 
+    taskNameInput.value = "";
     taskCount++;
-    numberOfTasks.textContent = taskCount;
+    numberOfTasks.textContent = taskCount; 
   }
 }
-//event listener to handle add task button
+
+// Event listener to handle the "Add Task" button click
 taskNameButton.addEventListener("click", addTask);
 
-//event listener to handle keyboard enter button to add task
+// Event listener to handle keyboard enter key press in the input box
 taskNameInput.addEventListener("keydown", function (event) {
   if (event.key === "Enter") {
     event.preventDefault();
@@ -62,103 +68,120 @@ taskNameInput.addEventListener("keydown", function (event) {
   }
 });
 
-
-// Delete 
+// Function to delete a task
 function deleteTask() {
-  const listItem = this.parentElement.parentElement;
-  listItem.remove();
-  taskCount--;
-  numberOfTasks.textContent = taskCount;
+  // Get the parent <li> element of the delete button
+  const listItem = this.parentElement.parentElement; 
+  // Remove the task from the task list
+  listItem.remove(); 
+  taskCount--; 
+  numberOfTasks.textContent = taskCount; 
   alert('Task deleted successfully');
 }
-// added event listener in task list
-taskList.addEventListener("click",(event)=>{
+
+// Event listener to handle task deletion when the delete button is clicked
+taskList.addEventListener("click", (event) => {
   if (event.target.classList.contains("deleteTaskButton")) {
-    deleteTask.call(event.target);}
+    deleteTask.call(event.target);
+  }
 });
 
-
-
-
-// Add click event listener to the Incomplete button to show all Incompleted task list
+// Event listener to show only incomplete tasks
 incompleteButton.addEventListener("click", () => {
-  // Get all list items
-  const listItems = document.querySelectorAll("#taskList li");
-
-  // Loop through the list items and toggle their visibility based on text-decoration property
+  // Get all list items in the task list
+  const listItems = document.querySelectorAll("#taskList li"); 
+  let count=0;
+  
   listItems.forEach((item) => {
-    const label = item.querySelector("label");
-    const computedStyle = getComputedStyle(label);
-    const textDecoration = computedStyle.getPropertyValue("text-decoration");
+    // Get the label element inside the list item
+    const label = item.querySelector("label"); 
+    const computedStyle = getComputedStyle(label); 
+    const textDecoration = computedStyle.getPropertyValue("text-decoration"); 
+    
+    
     if (label && !textDecoration.includes("line-through")) {
       item.style.display = "block";
+      count++;
     } else {
       item.style.display = "none";
     }
   });
-  listStatus.textContent = " Incomplete Task List";
+  if(count===0){
+    alert('No Task is Pending');
+  }
+  listStatus.textContent = "Incomplete Task List"; 
 });
 
-// Add click event listener to the Completed button to show all Completed task list
+// Event listener to show only completed tasks from the list
 completedTask.addEventListener("click", () => {
-  // Get all list items
-  const listItems = document.querySelectorAll("#taskList li");
+  // Get all list items in the task list
+  const listItems = document.querySelectorAll("#taskList li"); 
+  let count=0;
 
-  // Loop through the list items and toggle their visibility based on text-decoration property
   listItems.forEach((item) => {
-    const label = item.querySelector("label");
-    const computedStyle = getComputedStyle(label);
-    const textDecoration = computedStyle.getPropertyValue("text-decoration");
+    // Get the label element inside the list item
+    const label = item.querySelector("label"); 
+    const computedStyle = getComputedStyle(label); 
+    const textDecoration = computedStyle.getPropertyValue("text-decoration"); 
+
+    // only show the task which are completed
     if (label && textDecoration.includes("line-through")) {
       item.style.display = "block";
+      count++;
     } else {
       item.style.display = "none";
     }
   });
-  listStatus.textContent = "Completed Task List ";
+  if(count==0){
+    alert('No Task is Completed yet');
+  }
+  listStatus.textContent = "Completed Task List"; 
 });
 
-// Add click event listener to the All button to show all  task list
+// Event listener to show all tasks
 showAllTask.addEventListener("click", () => {
-  // Get all list items
-  const listItems = document.querySelectorAll("#taskList li");
-  // Loop through the list items and toggle their visibility to visible
+  // Get all list items in the task list
+  const listItems = document.querySelectorAll("#taskList li"); 
+
+  // Loop through the list items and set their display property to "block" to show them
   listItems.forEach((item) => {
-    const label = item.querySelector("label");
     item.style.display = "block";
   });
-  listStatus.textContent = " All Task List ";
+
+  listStatus.textContent = "All Task List"; 
 });
 
-// Add click event listener to the Complete All the Tasks in the list
+// Event listener to mark all tasks as complete
 completeAllButton.addEventListener("click", () => {
-  // Get all checkboxes
-  const checkboxes = document.querySelectorAll(
-    '#taskList input[type="checkbox"]'
-  );
+  // Get all checkboxes in the task list
+  const checkboxes = document.querySelectorAll('#taskList input[type="checkbox"]'); 
 
   // Set the "checked" property of each checkbox to true
   checkboxes.forEach((checkbox) => {
     checkbox.checked = true;
   });
-  alert('All task set as completed');
+
+  alert('All tasks set as completed');
 });
 
-// Add click event listener to the Clear all the Completed task from the list
+// Event listener to clear all completed tasks
 clearCompletedButton.addEventListener("click", () => {
-  // Get all list items with checked checkboxes
-  const completedItems = document.querySelectorAll(
-    '#taskList li input[type="checkbox"]:checked'
-  );
-
+  // Get all completed items (checkboxes checked) in the task list
+  const completedItems = document.querySelectorAll('#taskList li input[type="checkbox"]:checked'); 
+  let count=0;
   // Remove the parent <li> element of each completed item
   completedItems.forEach((item) => {
-    const listItem = item.closest("li");
+    const listItem = item.closest("li"); 
     if (listItem) {
-      listItem.remove();
-      taskCount--;
-      numberOfTasks.textContent = taskCount;
+      listItem.remove(); 
+      taskCount--; 
+      numberOfTasks.textContent = taskCount; 
+      count++;
     }
   });
-  alert('All completed task are deleted!!')
+  if(count==0){
+    alert('No task is completed to clear');
+  }
+  else
+  {alert('All completed tasks are deleted');}
 });

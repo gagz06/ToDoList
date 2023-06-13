@@ -5,53 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>To Do List</title>
     <link rel="stylesheet" href="./style.css">
-    <!-- <script src="https://kit.fontawesome.com/d8d112cec0.js" crossorigin="anonymous"></script> -->
+    <script src="https://kit.fontawesome.com/d8d112cec0.js" crossorigin="anonymous"></script>
 </head>
 <body>
     <div id="container">
         <div id="listContainer">
             <div id="taskNameContainer">
+                <i class="fa-solid fa-list-check"></i>
+                <!-- Input field for entering task  -->
                 <input type="text" id="taskName" name="taskName" placeholder="Type your to-do list">
-                <button id="taskNameButton">&#43;</button>
-              </div>              
+                <!-- Button for adding the task to the list -->
+                <button id="taskNameButton"><i class="fa-solid fa-plus"></i></button>
+            </div>              
             <br>
-           <div id="topButtonDiv">
-            <div id="lefttopButtonDiv">
-                <button id="completeAllTask">
-                    Complete all tasks
-                </button>
+            <div id="topButtonDiv">
+                <div id="lefttopButtonDiv">
+                    <!-- Button to complete all tasks in the list -->
+                    <button id="completeAllTask">
+                        <i class="fa-solid fa-check"></i>
+                        Complete all tasks
+                    </button>
+                </div>
+                <div id="righttopButtonDiv">
+                    <!-- Button to clear completed tasks -->
+                    <button id="clearCompleted">
+                        Clear Completed
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
             </div>
-            <div id="righttopButtonDiv">
-                <button id="clearCompleted">
-                    Clear Completed
-                </button>
-            </div>
-           </div>
             <hr>
             <strong>
                 <label id="listStatus"> All task List </label>
             </strong>
-           <div id="itemsList">
-            <ul id="taskList">
-            </ul>
-           </div>
+            <div id="itemsList">
+                <!-- List of all task will be displayed here -->
+                <ul id="taskList">
+                </ul>
+            </div>
             <hr>
             <div id="footerDiv">
-            <div id="leftFooter">
-                <label id="numberOfTasks"> 0 </label>
-                <label> tasks left </label>
-            </div>
-            <div id="rightFooter">
-                <button id="showAllTasks">
-                    All
-                </button>
-                <button id="incompleteTask">
-                    Incomplete
-                </button>
-                <button id="completedTask">
-                    Completed
-                </button>
-            </div>
+                <div id="leftFooter">
+                    <label id="numberOfTasks"> 0 </label>
+                    <label> tasks left </label>
+                </div>
+                <div id="rightFooter">
+                    <!-- Buttons for filtering the task list -->
+                    <button id="showAllTasks">
+                        All
+                    </button>
+                    <button id="incompleteTask">
+                        Incomplete
+                    </button>
+                    <button id="completedTask">
+                        Completed
+                    </button>
+                </div>
             </div>
         </div>
     </div>
