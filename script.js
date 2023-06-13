@@ -18,6 +18,8 @@ let taskCount = 0;
 // Get the Incomplete button
 const incompleteButton = document.getElementById("incompleteTask");
 
+document.getElementById('taskDate').valueAsDate = new Date();
+
 // Common function so that on click button and keyboard enter will add task in list
 function addTask() {
   const taskName = taskNameInput.value; 
