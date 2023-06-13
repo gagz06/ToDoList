@@ -14,11 +14,11 @@ button {
   border-radius: 20px;
   font-size: large;
 }
-/* #dateOfTask{
+#dateOfTask{
   background-color: lightgray;
   margin-left: 10px;
   border-radius: 20px;
-} */
+}
 #taskDate{
   height: 30px;
   font-size: large;

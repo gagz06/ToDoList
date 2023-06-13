@@ -32,6 +32,10 @@ function addTask() {
       alert("Task already exists!"); 
       return; 
     }
+    if(taskDate.trim()==""){
+      alert('Please enter valid date');
+      return;
+    }
     const newTaskItem = document.createElement("li"); 
     const listItemDiv = document.createElement("div");
     listItemDiv.className = "listItem"; 
@@ -60,6 +64,10 @@ function addTask() {
     taskNameInput.value = "";
     taskCount++;
     numberOfTasks.textContent = taskCount; 
+  }
+  else{
+    alert('Please enter task');
+    return;
   }
 }
 
@@ -162,6 +170,10 @@ completeAllButton.addEventListener("click", () => {
   // Get all checkboxes in the task list
   const checkboxes = document.querySelectorAll('#taskList input[type="checkbox"]'); 
 
+  if(checkboxes.length<1){
+    alert('No task in list');
+    return;
+  }
   // Set the "checked" property of each checkbox to true
   checkboxes.forEach((checkbox) => {
     checkbox.checked = true;
