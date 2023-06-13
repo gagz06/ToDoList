@@ -20,6 +20,7 @@ const incompleteButton = document.getElementById("incompleteTask");
 function addTask() {
   const taskName = taskNameInput.value;
   if (taskName.trim() !== "") {
+    //check whether the same task exist 
     const taskExists = Array.from(taskList.getElementsByTagName("label"))
     .some(label => label.textContent === taskName);
     if (taskExists) {
@@ -36,17 +37,24 @@ function addTask() {
     const deleteButton = document.createElement("button");
     deleteButton.className = "deleteTaskButton";
     deleteButton.innerHTML = "&#9587;";
+    //addidng elements in div from js
     listItemDiv.appendChild(checkbox);
     listItemDiv.appendChild(label);
     listItemDiv.appendChild(deleteButton);
+    //adding div in list
     newTaskItem.appendChild(listItemDiv);
+    //adding the li item into unordered list
     taskList.appendChild(newTaskItem);
-    taskNameInput.value = ""; // Clear the input field
+    // Clear the input field
+    taskNameInput.value = ""; 
     taskCount++;
     numberOfTasks.textContent = taskCount;
   }
 }
+//event listener to handle add task button
 taskNameButton.addEventListener("click", addTask);
+
+//event listener to handle keyboard enter button to add task
 taskNameInput.addEventListener("keydown", function (event) {
   if (event.key === "Enter") {
     event.preventDefault();
@@ -55,8 +63,7 @@ taskNameInput.addEventListener("keydown", function (event) {
 });
 
 
-// Add click event listener to each delete button
-
+// Delete 
 function deleteTask() {
   const listItem = this.parentElement.parentElement;
   listItem.remove();
