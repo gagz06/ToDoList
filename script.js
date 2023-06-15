@@ -1,4 +1,8 @@
+//Calling funtion to fill list from local storage
+
 document.addEventListener("DOMContentLoaded", retrieveTaskList);
+
+
 const taskNameInput = document.getElementById("taskName");
 const taskNameButton = document.getElementById("taskNameButton");
 const taskList = document.getElementById("taskList");
@@ -24,6 +28,7 @@ function saveTaskList() {
   localStorage.setItem("taskList", taskList.innerHTML);
 }
 
+// retrieve Task List data from local storage
 function retrieveTaskList() {
   const savedTaskList = localStorage.getItem("taskList");
   if (savedTaskList) {
@@ -34,6 +39,7 @@ function retrieveTaskList() {
   }
 }
 
+// set checkbox to checked/unchecked after retrieving data from local storage
 function toggleCheckbox(){
   const listItems = document.querySelectorAll("#taskList li");
   listItems.forEach((item)=>{
