@@ -2,7 +2,6 @@
 
 document.addEventListener("DOMContentLoaded", retrieveTaskList);
 
-
 const taskNameInput = document.getElementById("taskName");
 const taskNameButton = document.getElementById("taskNameButton");
 const taskList = document.getElementById("taskList");
@@ -40,17 +39,19 @@ function retrieveTaskList() {
 }
 
 // set checkbox to checked/unchecked after retrieving data from local storage
-function toggleCheckbox(){
+function toggleCheckbox() {
   const listItems = document.querySelectorAll("#taskList li");
-  listItems.forEach((item)=>{
-    const checkboxValue = item.querySelector('#taskList input[type="checkbox"]');
+  listItems.forEach((item) => {
+    const checkboxValue = item.querySelector(
+      '#taskList input[type="checkbox"]'
+    );
     const label = item.querySelector("label");
     const computedStyle = getComputedStyle(label);
     const textDecoration = computedStyle.getPropertyValue("text-decoration");
     if (label && textDecoration.includes("line-through")) {
-     checkboxValue.checked=true;
+      checkboxValue.checked = true;
     } else {
-      checkboxValue.checked=false;
+      checkboxValue.checked = false;
     }
   });
 }
@@ -72,17 +73,24 @@ function addTask() {
       alert("Please enter valid date");
       return;
     }
+
+    // Convert the taskDate to the desired format
+    const datePartition = taskDate.split("-");
+    const formattedDate = `${datePartition[2]}-${getMonthName(
+      datePartition[1]
+    )}-${datePartition[0].slice(-2)}`;
+
     const newTaskItem = document.createElement("li");
     const listItemDiv = document.createElement("div");
     listItemDiv.className = "listItem";
     const checkbox = document.createElement("input");
-    checkbox.id="checkboxToggler";
+    checkbox.id = "checkboxToggler";
     checkbox.type = "checkbox";
     const label = document.createElement("label");
     label.textContent = taskName;
     const dateLabel = document.createElement("label");
-    dateLabel.textContent = taskDate;
-    dateLabel.className="dateOfTask";
+    dateLabel.textContent = formattedDate;
+    dateLabel.className = "dateOfTask";
     const deleteButton = document.createElement("button");
     deleteButton.className = "deleteTaskButton";
     // Set the inner HTML of the delete button to a cross symbol
@@ -109,6 +117,24 @@ function addTask() {
   }
 }
 
+// Helper function to get the month abbreviation from the month number
+function getMonthName(monthNumber) {
+  const months = [
+    "Jan",
+    "Feb",
+    "Mar",
+    "Apr",
+    "May",
+    "Jun",
+    "Jul",
+    "Aug",
+    "Sep",
+    "Oct",
+    "Nov",
+    "Dec",
+  ];
+  return months[parseInt(monthNumber) - 1];
+}
 
 // Event listener for checkbox toggle
 taskList.addEventListener("change", (event) => {
@@ -121,7 +147,6 @@ taskList.addEventListener("change", (event) => {
     saveTaskList();
   }
 });
-
 
 // Event listener to handle the "Add Task" button click
 taskNameButton.addEventListener("click", addTask);
