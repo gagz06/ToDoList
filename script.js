@@ -232,9 +232,8 @@ completeAllButton.addEventListener("click", () => {
   checkboxes.forEach((checkbox) => {
     checkbox.checked = true;
   });
-
-  alert("All tasks set as completed");
   saveTaskList();
+  alert("All tasks set as completed");
 });
 
 // Event listener to clear all completed tasks
